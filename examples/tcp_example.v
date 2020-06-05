@@ -35,7 +35,7 @@ pub fn main() {
 
 	for {
 		conn := server.accept() or {
-			send_error_tcp(SERVER_ERROR_START, conn)
+			send_error_tcp(server_error_start, conn)
 			server.close() or { }
 			panic(err)
 		}

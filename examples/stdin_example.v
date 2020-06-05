@@ -3,15 +3,15 @@ module main
 import os
 import jsonrpc
 
-fn emit_error(err_code int) Response {
-	mut eres := Response{}
+fn emit_error(err_code int) jsonrpc.Response {
+	mut eres := jsonrpc.Response{}
 	eres.send_error(err_code)
     return eres
 }
 
 fn main() {
-    srv := jsonrpc.new()
-    srv.register('greet', fn (ctx mut Context) string {
+    mut srv := jsonrpc.new()
+    srv.register('greet', fn (mut ctx jsonrpc.Context) string {
         name := jsonrpc.as_string(ctx.req.params)
         return 'Hello, $name'
     })
