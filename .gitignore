@@ -1,2 +1,6 @@
 jsonrpc
 jsonrpc.tmp.c
+node_modules/
+*.json
+*.js
+*.exe

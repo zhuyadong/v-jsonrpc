@@ -25,7 +25,7 @@ pub mut:
 	req Request
 }
 
-struct Request {
+pub struct Request {
 pub mut:
     jsonrpc string = jrpc_version
     id int
@@ -102,6 +102,11 @@ pub fn (err &ResponseError) gen_json() string {
 
 pub fn (res &Response) gen_resp_text() string {
 	js := res.gen_json()
+	return 'Content-Length: ${js.len}\r\n\n${js}'
+}
+
+pub fn (req Request) gen_req_text() string {
+	js := json.encode(req)
 	return 'Content-Length: ${js.len}\r\n\n${js}'
 }
 
